@@ -3513,7 +3513,7 @@ this.worker = new Worker(window.workerURL, { type: "module" }), this.messageHand
     const i = t.cosmetics.flag, r = typeof i == "string" ? kx.find(s => s.code === i) : void 0, n = t.type() === pe.Human ? null : this.identityChipProps(t.type()); return b`
       <div class="flex items-center gap-2.5 flex-wrap">
         ${r && typeof i == "string" ? b`<img
-              src="flags/${encodeURIComponent(i)}.svg"
+              src="https://cdn.jsdelivr.net/gh/0xPYROSPHERE/ofio-ccg@main/flags/${encodeURIComponent(i)}.svg"
               alt=${r?.name ?? "Flag"}
               class="h-10 w-10 rounded-full object-cover"
               @error=${s => { s.target.style.display = "none" }}
