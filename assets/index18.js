@@ -2476,7 +2476,7 @@ this.worker = new Worker(window.workerURL, { type: "module" }), this.messageHand
     `: null
   }
 }; aa([E()], qr.prototype, "isVisible", 2); aa([E()], qr.prototype, "alternateView", 2); aa([pi(".modal-overlay")], qr.prototype, "modalOverlay", 2); aa([P({ type: Boolean })], qr.prototype, "shouldPause", 2); aa([P({ type: Boolean })], qr.prototype, "wasPausedWhenOpened", 2); qr = aa([F("settings-modal")], qr); const lE = "images/FastForwardIconSolidWhite.svg", cE = "images/PauseIconWhite.svg", uE = "images/PlayIconWhite.svg"; var dE = Object.defineProperty, hE = Object.getOwnPropertyDescriptor, oa = (t, e, i, r) => { for (var n = r > 1 ? void 0 : r ? hE(e, i) : e, s = t.length - 1, a; s >= 0; s--)(a = t[s]) && (n = (r ? a(e, i, n) : a(n)) || n); return r && n && dE(e, i, n), n }; let Gr = class extends G {
-  constructor() { super(...arguments), this._isSinglePlayer = !1, this._isReplayVisible = !1, this._isVisible = !0, this.isPaused = !1, this.timer = 0, this.hasWinner = !1, this.isLobbyCreator = !1, this.spawnBarVisible = !1, this.immunityBarVisible = !1, this.secondsToHms = t => { const e = s => s < 10 ? `0${s}` : s, i = Math.floor(t / 3600), r = Math.floor(t % 3600 / 60), n = Math.floor(t % 3600 % 60); return i !== 0 ? `${e(i)}:${e(r)}:${e(n)}` : `${e(r)}:${e(n)}` } } createRenderRoot() { return this } init() { this._isSinglePlayer = this.game?.config()?.gameConfig()?.gameType === ht.Singleplayer || this.game.config().isReplay(), this._isVisible = !0, this.game.inSpawnPhase(), this.eventBus.on(xu, t => { this.spawnBarVisible = t.visible, this.updateParentOffset() }), this.eventBus.on(wu, t => { this.immunityBarVisible = t.visible, this.updateParentOffset() }), this.eventBus.on(vc, () => { this.hasWinner = !0, this.requestUpdate() }), this.requestUpdate() } getTickIntervalMs() { return 250 } tick() { !this.isLobbyCreator && this.game.myPlayer()?.isLobbyCreator() && (this.isLobbyCreator = !0, this.requestUpdate()); const t = this.game.config().gameConfig().maxTimerValue, e = this.game.config().numSpawnPhaseTurns(), i = this.game.ticks(), r = Math.max(0, i - e), n = Math.floor(r / 10); if (this.game.inSpawnPhase()) { this.timer = t !== void 0 ? t * 60 : 0; return } this.hasWinner || (t !== void 0 ? this.timer = Math.max(0, t * 60 - n) : this.timer = n) } updateParentOffset() { const t = (this.spawnBarVisible ? 7 : 0) + (this.immunityBarVisible ? 7 : 0), e = this.parentElement; e && (e.style.marginTop = `${t}px`) } toggleReplayPanel() { this._isReplayVisible = !this._isReplayVisible, this.eventBus.emit(new H2(this._isReplayVisible, this._isSinglePlayer)) } onPauseButtonClick() { this.isPaused = !this.isPaused, this.isPaused ? xe.gameplayStop() : xe.gameplayStart(), this.eventBus.emit(new Jp(this.isPaused)) } async onExitButtonClick() { this.game.myPlayer()?.isAlive() && !confirm(f("help_modal.exit_confirmation")) || (await xe.requestMidgameAd(), await xe.gameplayStop(), window.location.href = "/") } onSettingsButtonClick() { this.eventBus.emit(new j2(!0, this._isSinglePlayer, this.isPaused)) } render() {
+  constructor() { super(...arguments), this._isSinglePlayer = !1, this._isReplayVisible = !1, this._isVisible = !0, this.isPaused = !1, this.timer = 0, this.hasWinner = !1, this.isLobbyCreator = !1, this.spawnBarVisible = !1, this.immunityBarVisible = !1, this.secondsToHms = t => { const e = s => s < 10 ? `0${s}` : s, i = Math.floor(t / 3600), r = Math.floor(t % 3600 / 60), n = Math.floor(t % 3600 % 60); return i !== 0 ? `${e(i)}:${e(r)}:${e(n)}` : `${e(r)}:${e(n)}` } } createRenderRoot() { return this } init() { this._isSinglePlayer = this.game?.config()?.gameConfig()?.gameType === ht.Singleplayer || this.game.config().isReplay(), this._isVisible = !0, this.game.inSpawnPhase(), this.eventBus.on(xu, t => { this.spawnBarVisible = t.visible, this.updateParentOffset() }), this.eventBus.on(wu, t => { this.immunityBarVisible = t.visible, this.updateParentOffset() }), this.eventBus.on(vc, () => { this.hasWinner = !0, this.requestUpdate() }), this.requestUpdate() } getTickIntervalMs() { return 250 } tick() { !this.isLobbyCreator && this.game.myPlayer()?.isLobbyCreator() && (this.isLobbyCreator = !0, this.requestUpdate()); const t = this.game.config().gameConfig().maxTimerValue, e = this.game.config().numSpawnPhaseTurns(), i = this.game.ticks(), r = Math.max(0, i - e), n = Math.floor(r / 10); if (this.game.inSpawnPhase()) { this.timer = t !== void 0 ? t * 60 : 0; return } this.hasWinner || (t !== void 0 ? this.timer = Math.max(0, t * 60 - n) : this.timer = n) } updateParentOffset() { const t = (this.spawnBarVisible ? 7 : 0) + (this.immunityBarVisible ? 7 : 0), e = this.parentElement; e && (e.style.marginTop = `${t}px`) } toggleReplayPanel() { this._isReplayVisible = !this._isReplayVisible, this.eventBus.emit(new H2(this._isReplayVisible, this._isSinglePlayer)) } onPauseButtonClick() { this.isPaused = !this.isPaused, this.isPaused ? xe.gameplayStop() : xe.gameplayStart(), this.eventBus.emit(new Jp(this.isPaused)) } async onExitButtonClick() { this.game.myPlayer()?.isAlive() && !confirm(f("help_modal.exit_confirmation")) || (await xe.requestMidgameAd(), await xe.gameplayStop(), window.close()) } onSettingsButtonClick() { this.eventBus.emit(new j2(!0, this._isSinglePlayer, this.isPaused)) } render() {
     if (this.game === void 0) return b``; const t = this.game.config().gameConfig().maxTimerValue !== void 0 && this.timer < 60 ? "text-red-400" : ""; return b`
       <aside
         class=${`w-fit flex flex-row items-center gap-3 py-2 px-3 bg-gray-800/92 backdrop-blur-sm shadow-xs min-[1200px]:rounded-lg rounded-bl-lg transition-transform duration-300 ease-out transform text-white ${this._isVisible ? "translate-x-0" : "translate-x-full"}`}
@@ -4372,7 +4372,7 @@ const DOUBLE_PI: f32 = 3.14159265358979323846264 * 2.;`, p9 = Object.definePrope
               class="w-full h-full object-contain pointer-events-none"
               draggable="false"
               loading="lazy"
-              @error=${t => { const e = t.currentTarget, i = "/xx.svg"; e.src && !e.src.endsWith(i) && (e.src = i) }}
+              @error=${t => { const e = t.currentTarget, i = "flags/xx.svg"; e.src && !e.src.endsWith(i) && (e.src = i) }}
             />
           </div>
         </button>
@@ -4395,13 +4395,13 @@ const DOUBLE_PI: f32 = 3.14159265358979323846264 * 2.;`, p9 = Object.definePrope
           ></flag-button>
         `), n = this.search ? null : b`
           <flag-button
-            .flag=${{ key: "country:xx", name: "None", url: "/xx.svg" }}
+            .flag=${{ key: "country:xx", name: "None", url: "flags/xx.svg" }}
             .selected=${e === "" || e === "country:xx"}
             .onSelect=${i}
           ></flag-button>
         `, s = kx.filter(a => a.code !== "xx" && !a.restricted && this.includedInSearch(a)).map(a => b`
         <flag-button
-          .flag=${{ key: `country:${a.code}`, name: a.name, url: `/${a.code}.svg` }}
+          .flag=${{ key: `country:${a.code}`, name: a.name, url: `flags/${a.code}.svg` }}
           .selected=${e === `country:${a.code}`}
           .onSelect=${i}
         ></flag-button>
@@ -7174,7 +7174,7 @@ const DOUBLE_PI: f32 = 3.14159265358979323846264 * 2.;`, p9 = Object.definePrope
                 >
                   <img
                     crossorigin = "anonymous"
-                    src="/${e.svg}.svg"
+                    src="flags/${e.svg}.svg"
                     class="w-8 h-6 object-contain rounded-sm shrink-0"
                     alt="${e.code}"
                   />
